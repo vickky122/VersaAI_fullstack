@@ -33,36 +33,50 @@ public class GenAIController {
     return chatService.getResponseOptions(prompt);
   }
 
+  /*
+   * @GetMapping("/generate-image")
+   * public void generateImages(HttpServletResponse response, @RequestParam String
+   * prompt) throws IOException {
+   * ImageResponse imageResponse = imageService.generateImage(prompt);
+   * String imageUrl = imageResponse.getResult().getOutput().getUrl();
+   * response.sendRedirect(imageUrl);
+   * }
+   */
+
   @GetMapping("/generate-image")
   public void generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
     ImageResponse imageResponse = imageService.generateImage(prompt);
-    String imageUrl = imageResponse.getResult().getOutput().getUrl();
-    response.sendRedirect(imageUrl);
+
+    // Streams is going to used ffor getting urls from IageResponse for mjltiple
+    // images
+
   }
 
-  // @GetMapping("/generate-image")
-  // public void generateImages(HttpServletResponse response, @RequestParam String
-  // prompt) throws IOException {
-  // try {
-  // ImageResponse imageResponse = imageService.generateImage(prompt);
-  // if (imageResponse == null || imageResponse.getResult() == null ||
-  // imageResponse.getResult().getOutput() == null) {
-  // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to
-  // generate image.");
-  // return;
-  // }
-  // String imageUrl = imageResponse.getResult().getOutput().getUrl();
-  // if (imageUrl == null || imageUrl.isEmpty()) {
-  // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Generated
-  // image URL is invalid.");
-  // return;
-  // }
-  // response.sendRedirect(imageUrl);
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error
-  // occurred while generating the image.");
-  // }
-  // }
+  /*
+   * @GetMapping("/generate-image")
+   * public void generateImages(HttpServletResponse response, @RequestParam String
+   * prompt) throws IOException {
+   * try {
+   * ImageResponse imageResponse = imageService.generateImage(prompt);
+   * if (imageResponse == null || imageResponse.getResult() == null ||
+   * imageResponse.getResult().getOutput() == null) {
+   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to
+   * generate image.");
+   * return;
+   * }
+   * String imageUrl = imageResponse.getResult().getOutput().getUrl();
+   * if (imageUrl == null || imageUrl.isEmpty()) {
+   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Generated
+   * image URL is invalid.");
+   * return;
+   * }
+   * response.sendRedirect(imageUrl);
+   * } catch (Exception e) {
+   * e.printStackTrace();
+   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error
+   * occurred while generating the image.");
+   * }
+   * }
+   */
 
 }
