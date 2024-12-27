@@ -20,4 +20,9 @@ public class GenAIController {
   // public String response() {
   // return "hello";
   // }
+
+  @GetMapping("/ask-ai-options")
+  public String getResponseOptions(@RequestParam String prompt) {
+    return chatService.getResponseOptions(prompt);
+  }
 }
