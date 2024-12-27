@@ -47,7 +47,7 @@ public class GenAIController {
   public List<String> generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
     ImageResponse imageResponse = imageService.generateImage(prompt);
 
-    // Streams is going to used for getting urls from ImageResponse for mjltiple
+    // Streams is going to used for getting urls from ImageResponse for multiple
     // image generations
     List<String> imageUrls = imageResponse.getResults().stream()
         .map(result -> result.getOutput().getUrl())
