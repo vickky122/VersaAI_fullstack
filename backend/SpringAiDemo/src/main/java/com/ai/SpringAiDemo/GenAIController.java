@@ -44,7 +44,11 @@ public class GenAIController {
   // }
 
   @GetMapping("generate-image")
-  public List<String> generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
+  public List<String> generateImages(HttpServletResponse response, @RequestParam String prompt,
+      @RequestParam(defaultValue = "hd") String quality,
+      @RequestParam(defaultValue = "1") int n,
+      @RequestParam(defaultValue = "hd") int width,
+      @RequestParam(defaultValue = "hd") int height) throws IOException {
     ImageResponse imageResponse = imageService.generateImage(prompt);
 
     // Streams is going to used for getting urls from ImageResponse for multiple
