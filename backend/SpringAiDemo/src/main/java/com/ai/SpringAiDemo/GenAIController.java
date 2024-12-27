@@ -1,6 +1,8 @@
 package com.ai.SpringAiDemo;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,50 +35,26 @@ public class GenAIController {
     return chatService.getResponseOptions(prompt);
   }
 
-  /*
-   * @GetMapping("/generate-image")
-   * public void generateImages(HttpServletResponse response, @RequestParam String
-   * prompt) throws IOException {
-   * ImageResponse imageResponse = imageService.generateImage(prompt);
-   * String imageUrl = imageResponse.getResult().getOutput().getUrl();
-   * response.sendRedirect(imageUrl);
-   * }
-   */
+  // @GetMapping("generate-image")
+  // public void generateImages(HttpServletResponse response, @RequestParam String
+  // prompt) throws IOException {
+  // ImageResponse imageResponse = imageService.generateImage(prompt);
+  // String imageUrl = imageResponse.getResult().getOutput().getUrl();
+  // response.sendRedirect(imageUrl);
+  // }
 
-  @GetMapping("/generate-image")
-  public void generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
+  @GetMapping("generate-image")
+  public List<String> generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
     ImageResponse imageResponse = imageService.generateImage(prompt);
 
-    // Streams is going to used ffor getting urls from IageResponse for mjltiple
-    // images
+    // Streams is going to used for getting urls from ImageResponse for mjltiple
+    // image generations
+    List<String> imageUrls = imageResponse.getResults().stream()
+        .map(result -> result.getOutput().getUrl())
+        .toList();
+
+    return imageUrls;
 
   }
-
-  /*
-   * @GetMapping("/generate-image")
-   * public void generateImages(HttpServletResponse response, @RequestParam String
-   * prompt) throws IOException {
-   * try {
-   * ImageResponse imageResponse = imageService.generateImage(prompt);
-   * if (imageResponse == null || imageResponse.getResult() == null ||
-   * imageResponse.getResult().getOutput() == null) {
-   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to
-   * generate image.");
-   * return;
-   * }
-   * String imageUrl = imageResponse.getResult().getOutput().getUrl();
-   * if (imageUrl == null || imageUrl.isEmpty()) {
-   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Generated
-   * image URL is invalid.");
-   * return;
-   * }
-   * response.sendRedirect(imageUrl);
-   * } catch (Exception e) {
-   * e.printStackTrace();
-   * response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error
-   * occurred while generating the image.");
-   * }
-   * }
-   */
 
 }
