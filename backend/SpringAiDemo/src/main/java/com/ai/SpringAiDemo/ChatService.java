@@ -28,6 +28,11 @@ public class ChatService {
                 .withTemperature(0.4)
                 .build()));
 
+    // temperature refers to the randomness of the response and its value ranges
+    // from 0 to 2.
+    // Lower values make the response more deterministic, while higher values make
+    // it more random.
+
     return response.getResult().getOutput().getContent();
   }
 }
