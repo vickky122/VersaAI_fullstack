@@ -14,10 +14,10 @@ public class GenAIController {
   }
 
   @GetMapping("/ask-ai")
-  // public String getResponse(@RequestParam String prompt) {
-  // return chatService.getResponse(prompt);
-  // }
-  public String response() {
-    return "hello";
+  public String getResponse(@RequestParam String prompt) {
+    return chatService.getResponse(prompt);
   }
+  // public String response() {
+  // return "hello";
+  // }
 }

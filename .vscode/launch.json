@@ -1,5 +1,5 @@
 {
-  "configurations": [
+  "configurations": [    
     {
       "type": "java",
       "name": "Spring Boot-SpringAiDemoApplication<SpringAiDemo>",
@@ -8,7 +8,7 @@
       "mainClass": "com.ai.SpringAiDemo.SpringAiDemoApplication",
       "projectName": "SpringAiDemo",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "SpringAiDemo/.env",
     }
   ]
 }
