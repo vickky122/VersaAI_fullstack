@@ -1,35 +1,35 @@
 
-VersaAI
+### VersaAI
 
-VersaAI is a multi-functional AI-powered web application that enables users to:
+## VersaAI is a multi-functional AI-powered web application that enables users to:
 
-1. Generate images based on textual prompts.
-
-
-2. Chat with an AI for Q&A.
+# 1. Generate images based on textual prompts.
 
 
-3. Generate recipes from a list of ingredients.
+# 2. Chat with an AI for Q&A.
+
+
+# 3. Generate recipes from a list of ingredients.
 
 
 
-The project is built with a React.js frontend and a Spring Boot backend, integrated with OpenAI for AI functionalities.
+## The project is built with a React.js frontend and a Spring Boot backend, integrated with OpenAI for AI functionalities.
 
 
 ---
 
-Features
+## Features
 
-Image Generator: Enter a text prompt to generate AI-powered images.
+# Image Generator: Enter a text prompt to generate AI-powered images.
 
-AI Chat: Ask questions and get conversational responses.
+# AI Chat: Ask questions and get conversational responses.
 
-Recipe Generator: Input available ingredients and receive a complete recipe suggestion.
+# Recipe Generator: Input available ingredients and receive a complete recipe suggestion.
 
 
-Technology Stack
+## Technology Stack
 
-Backend
+# Backend
 
 Spring Boot
 
@@ -37,8 +37,8 @@ OpenAI API for AI functionalities
 
 Java
 
-
-Frontend
+ 
+# Frontend
 
 React.js (CRA setup with functional components and hooks)
 
@@ -48,7 +48,7 @@ CSS for styling
 
 ---
 
-Prerequisites
+# Prerequisites
 
 Node.js
 
@@ -61,21 +61,21 @@ Maven
 OpenAI API Key
 
 
-Known Issues
+# Known Issues
 
 Prompt validation for image generation may need enhancements.
 
 Some error handling cases are not covered yet.
 
 
-License
+# License
 
 This project is licensed under the MIT License.
 
 
 ---
 
-Acknowledgments
+# Acknowledgments
 
 OpenAI for their powerful APIs.
 
