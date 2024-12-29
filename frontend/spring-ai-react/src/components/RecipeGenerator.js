@@ -31,6 +31,11 @@ function RecipeGenerator() {
       value={dietaryRestrictions}
       onChange={(e) => setDietaryRestrictions(e.target.value)}
     />
+
+<button onClick={() => setRecipe(chatService.recipeCreator(ingredients, cuisine, dietaryRestrictions))}>Generate Recipe</button>
+    <div className="output">
+      <p>{recipe}</p>
+    </div>
     
     </div>
     
