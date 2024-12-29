@@ -19,6 +19,12 @@ function ImageGenerator() {
       />
       <button onClick={generateImage}>Generate Image</button>
 
+      <div className="image-grid">
+        {imageUrls.map((url, index) => (
+          <img key={index} src={url} alt={`Generated Image ${index}`} />
+        ))}
+      </div>
+
     </div>
     
   );
