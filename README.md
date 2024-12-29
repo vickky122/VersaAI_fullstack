@@ -25,3 +25,37 @@ Image Generator: Enter a text prompt to generate AI-powered images.
 AI Chat: Ask questions and get conversational responses.
 
 Recipe Generator: Input available ingredients and receive a complete recipe suggestion.
+
+
+Technology Stack
+
+Backend
+
+Spring Boot
+
+OpenAI API for AI functionalities
+
+Java
+
+
+Frontend
+
+React.js (CRA setup with functional components and hooks)
+
+CSS for styling
+
+
+
+---
+
+Prerequisites
+
+Node.js
+
+npm or yarn
+
+Java 17 or above
+
+Maven
+
+OpenAI API Key
