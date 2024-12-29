@@ -5,7 +5,14 @@ function ImageGenerator() {
   const [imageUrls, setImageUrls] = useState([]);
 
   const generateImage = async () => {
+        try{
 
+          const response = await fetch('http://localhost:8081/generate-image?prompt=${prompt}'); 
+            const urls=await response.json();
+            setImageUrls(urls);
+        }catch(error){
+          console.error("Error generating image:", error)
+        }
   };
 
   return (
