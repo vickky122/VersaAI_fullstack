@@ -59,3 +59,10 @@ Java 17 or above
 Maven
 
 OpenAI API Key
+
+
+Known Issues
+
+Prompt validation for image generation may need enhancements.
+
+Some error handling cases are not covered yet.
