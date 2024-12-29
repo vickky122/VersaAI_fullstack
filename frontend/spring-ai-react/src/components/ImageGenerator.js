@@ -24,6 +24,9 @@ function ImageGenerator() {
           <img key={index} src={url} alt={`Generated Image ${index}`} />
         ))}
         {/* spread operator is used to copy the array and not the reference */}
+        {[...Array(4 - imageUrls.length)].map((_, index) => (
+          <div key={index + imageUrls.length} className="empty-image-slot"></div>
+        ))}
       </div>
 
     </div>
