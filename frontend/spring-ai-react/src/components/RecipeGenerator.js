@@ -2,7 +2,7 @@ import React from 'react'
 
 function RecipeGenerator() {
   return (
-    <h2>RecipeGenerator</h2>
+    <h2>Create a Recipe</h2>
   );
 }
 
