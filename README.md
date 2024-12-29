@@ -66,3 +66,17 @@ Known Issues
 Prompt validation for image generation may need enhancements.
 
 Some error handling cases are not covered yet.
+
+
+License
+
+This project is licensed under the MIT License.
+
+
+---
+
+Acknowledgments
+
+OpenAI for their powerful APIs.
+
+The React and Spring Boot communities for their extensive support.
