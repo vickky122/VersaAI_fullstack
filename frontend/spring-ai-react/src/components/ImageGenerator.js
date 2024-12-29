@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 function ImageGenerator() {
   const [prompt, setPrompt] = useState('');
   const [imageUrls, setImageUrls] = useState([]);
+
+  const generateImage = async () => {
+
+  };
+
   return (
     <div className='tab-content'>
 <h2>Generate Image</h2>
@@ -12,6 +17,7 @@ function ImageGenerator() {
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
+      <button onClick={generateImage}>Generate Image</button>
 
     </div>
     
