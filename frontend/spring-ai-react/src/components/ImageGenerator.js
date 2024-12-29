@@ -5,10 +5,10 @@ function ImageGenerator() {
   const [imageUrls, setImageUrls] = useState([]);
   return (
     <div className='tab-content'>
-<h2>ImageGenerator</h2>
+<h2>Generate Image</h2>
      <input
         type="text"
-        placeholder="Enter a prompt"
+        placeholder="Enter a prompt for image"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
