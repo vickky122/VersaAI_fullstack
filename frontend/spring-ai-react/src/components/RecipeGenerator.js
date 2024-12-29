@@ -7,7 +7,16 @@ function RecipeGenerator() {
     const [dietaryRestrictions, setDietaryRestrictions] = useState('');
     const [recipe, setRecipe] = useState(''); 
 
-
+    const createRecipe = async () => {
+      try {
+          const response = await fetch(`http://localhost:8081/recipe-creator?ingredients=${ingredients}&dietaryRestrictions=${dietaryRestrictions}&cuisine=${cuisine}`)
+          const data = await response.text();
+          console.log(data);
+          setRecipe(data);
+      } catch (error) {
+          console.error("Error generating recipe : ", error)
+      }
+  };
   
   return (
     <div>
