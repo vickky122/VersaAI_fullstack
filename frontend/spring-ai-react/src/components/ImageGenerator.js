@@ -30,17 +30,18 @@ function ImageGenerator() {
         sx={{ marginBottom: 2 }}
       />
       <Button variant="contained" color="primary" onClick={generateImage}>
-        Generate Image
-      </Button>
-      <Grid container spacing={2} sx={{ marginTop: 2 }}>
-        {imageUrls.map((url, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card>
-              <CardMedia component="img" image={url} alt={`Generated ${index}`} />
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+  Generate Image
+</Button>
+<Grid container spacing={2} sx={{ marginTop: 2, backgroundColor: 'background.paper', padding: 2 }}>
+  {imageUrls.map((url, index) => (
+    <Grid item xs={12} sm={6} md={4} key={index}>
+      <Card>
+        <CardMedia component="img" image={url} alt={`Generated ${index}`} />
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+
     </Box>
   );
 }
