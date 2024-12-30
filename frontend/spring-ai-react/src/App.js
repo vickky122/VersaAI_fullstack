@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
-import { Tabs, Tab, Box } from '@mui/material';
+import React, { useContext } from 'react';
+import { Tabs, Tab, Box, IconButton } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { ThemeContext } from './ThemeContext';
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
 import RecipeGenerator from './components/RecipeGenerator';
 
 function App() {
-  const [activeTab, setActiveTab] = useState(0);
+  const { toggleTheme, mode } = useContext(ThemeContext);
+  const [activeTab, setActiveTab] = React.useState(0);
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        typography: 'body1',
-        textAlign: 'center',
-        padding: 2,
-        backgroundColor: 'background.default',
-        color: 'text.primary',
-        minHeight: '100vh',
-      }}
-    >
-      <Tabs
-        value={activeTab}
-        onChange={handleTabChange}
-        centered
-        textColor="primary"
+    <Box sx={{ width: '100%', typography: 'body1', textAlign: 'center', padding: 2, position: 'relative' }}>
+      {/* Theme Toggle Button */}
+      <IconButton
+        onClick={toggleTheme}
+        sx={{ position: 'absolute', top: 16, right: 16 }}
+        color="inherit"
+      >
+        {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+      </IconButton>
+
+      <Tabs 
+        value={activeTab} 
+        onChange={handleTabChange} 
+        centered 
+        textColor="primary" 
         indicatorColor="primary"
         sx={{ marginBottom: 2 }}
       >
