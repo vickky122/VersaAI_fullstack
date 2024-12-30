@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button, Grid, Card, CardMedia, Typography, Box } from '@mui/material';
 
 function ImageGenerator() {
   const [prompt, setPrompt] = useState('');
@@ -9,7 +10,6 @@ function ImageGenerator() {
       const response = await fetch(`http://localhost:8081/generate-image?prompt=${encodeURIComponent(prompt)}`);
       if (!response.ok) throw new Error('Failed to fetch the image');
       const urls = await response.json();
-      console.log(urls);
       setImageUrls(urls);
     } catch (error) {
       console.error("Error generating image:", error);
@@ -17,25 +17,31 @@ function ImageGenerator() {
   };
 
   return (
-    <div className="tab-content">
-      <h2>Generate Image</h2>
-      <input
-        type="text"
-        placeholder="Enter a prompt for image"
+    <Box sx={{ textAlign: 'center' }}>
+      <Typography variant="h5" gutterBottom>
+        Generate Image
+      </Typography>
+      <TextField
+        fullWidth
+        variant="outlined"
+        label="Enter a prompt for image"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
+        sx={{ marginBottom: 2 }}
       />
-      <button onClick={generateImage}>Generate Image</button>
-
-      <div className="image-grid">
+      <Button variant="contained" color="primary" onClick={generateImage}>
+        Generate Image
+      </Button>
+      <Grid container spacing={2} sx={{ marginTop: 2 }}>
         {imageUrls.map((url, index) => (
-          <img key={index} src={url} alt={`Generated Image ${index}`} />
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card>
+              <CardMedia component="img" image={url} alt={`Generated ${index}`} />
+            </Card>
+          </Grid>
         ))}
-        {[...Array(Math.max(0, 4 - imageUrls.length))].map((_, index) => (
-          <div key={index + imageUrls.length} className="empty-image-slot"></div>
-        ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 }
 
