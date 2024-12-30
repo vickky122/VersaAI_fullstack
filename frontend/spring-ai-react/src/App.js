@@ -12,12 +12,22 @@ function App() {
   };
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1', textAlign: 'center', padding: 2 }}>
-      <Tabs 
-        value={activeTab} 
-        onChange={handleTabChange} 
-        centered 
-        textColor="primary" 
+    <Box
+      sx={{
+        width: '100%',
+        typography: 'body1',
+        textAlign: 'center',
+        padding: 2,
+        backgroundColor: 'background.default',
+        color: 'text.primary',
+        minHeight: '100vh',
+      }}
+    >
+      <Tabs
+        value={activeTab}
+        onChange={handleTabChange}
+        centered
+        textColor="primary"
         indicatorColor="primary"
         sx={{ marginBottom: 2 }}
       >
