@@ -5,6 +5,8 @@ import { ThemeContext } from './ThemeContext';
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
 import RecipeGenerator from './components/RecipeGenerator';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 function App() {
   const { toggleTheme, mode } = useContext(ThemeContext);
@@ -17,13 +19,13 @@ function App() {
   return (
     <Box sx={{ width: '100%', typography: 'body1', textAlign: 'center', padding: 2, position: 'relative' }}>
       {/* Theme Toggle Button */}
-      <IconButton
+      {/* <IconButton
         onClick={toggleTheme}
         sx={{ position: 'absolute', top: 16, right: 16 }}
         color="inherit"
       >
         {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
-      </IconButton>
+      </IconButton> */}
 
       <Tabs 
         value={activeTab} 
@@ -37,6 +39,11 @@ function App() {
         <Tab label="Ask AI" />
         <Tab label="Recipe Generator" />
       </Tabs>
+      <IconButton onClick={toggleTheme} color="inherit" 
+      sx={{ position: 'absolute', top: 16, right: 16 }}>
+          {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+
 
       <Box>
         {activeTab === 0 && <ImageGenerator />}
