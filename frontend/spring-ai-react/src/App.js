@@ -1,39 +1,38 @@
-import './App.css';
 import React, { useState } from 'react';
+import { Tabs, Tab, Box } from '@mui/material';
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
 import RecipeGenerator from './components/RecipeGenerator';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('image-generator');
+  const [activeTab, setActiveTab] = useState(0);
 
-  const handleTabChange = (tab)=>{
-    //alert(tab)
-    setActiveTab(tab);
-  }
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
 
-return(
-  <div className="App">
-    <button className={activeTab === 'image-generator' ? 'active' : ''}
-    onClick={()=>handleTabChange('image-generator')}>
-      Image Generator
-      </button>
-    <button className={activeTab === 'chat' ? 'active' : ''}
-    onClick={()=>handleTabChange('chat')}>
-      Ask AI
-      </button>
-    <button className={activeTab === 'recipe-generator' ? 'active' : ''}
-    onClick={()=>handleTabChange('recipe-generator')}>
-      Recipe Generator
-      </button>
+  return (
+    <Box sx={{ width: '100%', typography: 'body1', textAlign: 'center', padding: 2 }}>
+      <Tabs 
+        value={activeTab} 
+        onChange={handleTabChange} 
+        centered 
+        textColor="primary" 
+        indicatorColor="primary"
+        sx={{ marginBottom: 2 }}
+      >
+        <Tab label="Image Generator" />
+        <Tab label="Ask AI" />
+        <Tab label="Recipe Generator" />
+      </Tabs>
 
-      <div>
-        {activeTab === 'image-generator' && <ImageGenerator/>}
-        {activeTab === 'chat' && <ChatComponent/>}   
-        {activeTab === 'recipe-generator' && <RecipeGenerator/>}
-      </div>
-    </div>
-    );
-  }
+      <Box>
+        {activeTab === 0 && <ImageGenerator />}
+        {activeTab === 1 && <ChatComponent />}
+        {activeTab === 2 && <RecipeGenerator />}
+      </Box>
+    </Box>
+  );
+}
 
 export default App;
