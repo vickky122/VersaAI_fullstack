@@ -20,7 +20,8 @@ function RecipeGenerator() {
   };
 
   return (
-    <Paper elevation={3} sx={{ padding: 3, margin: '0 auto', maxWidth: 600 }}>
+    <Paper elevation={3} sx={{ padding: 3, margin: '0 auto', maxWidth: 600, backgroundColor: 'background.paper', color: 'text.primary' }}>
+
       <Typography variant="h5" gutterBottom>
         Create a Recipe
       </Typography>
