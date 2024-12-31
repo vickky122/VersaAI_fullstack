@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Paper, Typography, Box } from '@mui/material';
+import { motion } from 'framer-motion';
 
 function RecipeGenerator() {
   const [ingredients, setIngredients] = useState('');
@@ -20,44 +21,52 @@ function RecipeGenerator() {
   };
 
   return (
-    <Paper elevation={3} sx={{ padding: 3, margin: '0 auto', maxWidth: 600, backgroundColor: 'background.paper', color: 'text.primary' }}>
-
-      <Typography variant="h5" gutterBottom>
-        Create a Recipe
-      </Typography>
-      <TextField
-        fullWidth
-        variant="outlined"
-        label="Ingredients (comma separated)"
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        fullWidth
-        variant="outlined"
-        label="Cuisine"
-        value={cuisine}
-        onChange={(e) => setCuisine(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        fullWidth
-        variant="outlined"
-        label="Dietary Restrictions"
-        value={dietaryRestrictions}
-        onChange={(e) => setDietaryRestrictions(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <Button variant="contained" color="primary" onClick={createRecipe}>
-        Create Recipe
-      </Button>
-      <Box sx={{ marginTop: 2 }}>
-        <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
-          {recipe}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Paper
+        elevation={3}
+        sx={{ padding: 3, margin: '0 auto', maxWidth: 600, backgroundColor: 'background.paper', color: 'text.primary' }}
+      >
+        <Typography variant="h5" gutterBottom>
+          Create a Recipe
         </Typography>
-      </Box>
-    </Paper>
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Ingredients (comma separated)"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Cuisine"
+          value={cuisine}
+          onChange={(e) => setCuisine(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Dietary Restrictions"
+          value={dietaryRestrictions}
+          onChange={(e) => setDietaryRestrictions(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <Button variant="contained" color="primary" onClick={createRecipe}>
+          Create Recipe
+        </Button>
+        <Box sx={{ marginTop: 2 }}>
+          <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
+            {recipe}
+          </Typography>
+        </Box>
+      </Paper>
+    </motion.div>
   );
 }
 
