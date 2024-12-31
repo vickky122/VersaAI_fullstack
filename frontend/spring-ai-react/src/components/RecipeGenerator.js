@@ -61,9 +61,15 @@ function RecipeGenerator() {
           Create Recipe
         </Button>
         <Box sx={{ marginTop: 2 }}>
-          <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
-            {recipe}
-          </Typography>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
+              {recipe}
+            </Typography>
+          </motion.div>
         </Box>
       </Paper>
     </motion.div>
