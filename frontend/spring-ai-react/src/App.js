@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Tabs, Tab, Box, IconButton } from '@mui/material';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
+// import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { ThemeContext } from './ThemeContext';
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
