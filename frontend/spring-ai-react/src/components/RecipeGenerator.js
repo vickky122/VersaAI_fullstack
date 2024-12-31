@@ -36,7 +36,7 @@ function RecipeGenerator() {
         <TextField
           fullWidth
           variant="outlined"
-          label="Ingredients (comma separated)"
+          label={`Ingredients (comma separated) (${ingredients.length}/200)`}
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
           sx={{ marginBottom: 2 }}
@@ -44,7 +44,7 @@ function RecipeGenerator() {
         <TextField
           fullWidth
           variant="outlined"
-          label="Cuisine"
+          label={`Cuisine (${cuisine.length}/50)`}
           value={cuisine}
           onChange={(e) => setCuisine(e.target.value)}
           sx={{ marginBottom: 2 }}
@@ -52,7 +52,7 @@ function RecipeGenerator() {
         <TextField
           fullWidth
           variant="outlined"
-          label="Dietary Restrictions"
+          label={`Dietary Restrictions (${dietaryRestrictions.length}/100)`}
           value={dietaryRestrictions}
           onChange={(e) => setDietaryRestrictions(e.target.value)}
           sx={{ marginBottom: 2 }}
