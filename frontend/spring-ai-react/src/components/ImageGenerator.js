@@ -47,7 +47,16 @@ function ImageGenerator() {
         onChange={(e) => setPrompt(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-      <Button variant="contained" color="primary" onClick={generateImages}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={generateImages}
+        sx={{
+          '&:hover': {
+            backgroundColor: '#007BFF', // A lighter blue for hover
+          },
+        }}
+      >
         Generate
       </Button>
       {isLoading ? (
