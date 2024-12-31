@@ -16,6 +16,11 @@ function ChatComponent() {
     }
   };
 
+  const clearChat = () => {
+    setPrompt('');
+    setChatResponse('');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100 }}
@@ -37,8 +42,11 @@ function ChatComponent() {
           onChange={(e) => setPrompt(e.target.value)}
           sx={{ marginBottom: 2 }}
         />
-        <Button variant="contained" color="primary" onClick={askAI}>
+        <Button variant="contained" color="primary" onClick={askAI} sx={{ marginRight: 2 }}>
           Ask AI
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={clearChat}>
+          Clear
         </Button>
         <Box sx={{ marginTop: 2 }}>
           <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
