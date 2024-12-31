@@ -1,54 +1,65 @@
 import React, { useState } from 'react';
-import { TextField, Button, Grid, Card, CardMedia, Typography, Box } from '@mui/material';
+import { TextField, Button, CircularProgress, Grid, Card, CardMedia, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
 function ImageGenerator() {
   const [prompt, setPrompt] = useState('');
   const [imageUrls, setImageUrls] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const generateImage = async () => {
+  const generateImages = async () => {
+    setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:8081/generate-image?prompt=${encodeURIComponent(prompt)}`);
-      if (!response.ok) throw new Error('Failed to fetch the image');
-      const urls = await response.json();
-      setImageUrls(urls);
+      const response = await fetch(`http://localhost:8081/generate-images?prompt=${prompt}`);
+      const data = await response.json();
+      setImageUrls(data.imageUrls || []);
     } catch (error) {
-      console.error("Error generating image:", error);
+      console.error("Error generating images:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <Box sx={{ textAlign: 'center' }}>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Typography variant="h5" gutterBottom>
-        Generate Image
+        Generate Images
       </Typography>
       <TextField
         fullWidth
         variant="outlined"
-        label="Enter a prompt for image"
+        label="Enter prompt for images"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-      <Button variant="contained" color="primary" onClick={generateImage}>
-        Generate Image
+      <Button variant="contained" color="primary" onClick={generateImages}>
+        Generate
       </Button>
-      <Grid container spacing={2} sx={{ marginTop: 2 }}>
-        {imageUrls.map((url, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card>
-                <CardMedia component="img" image={url} alt={`Generated ${index}`} />
-              </Card>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+      {isLoading ? (
+        <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
+      ) : (
+        <Grid container spacing={2} sx={{ marginTop: 2 }}>
+          {imageUrls.map((url, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card>
+                  <CardMedia component="img" image={url} alt={`Generated ${index}`} />
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </motion.div>
   );
 }
 
