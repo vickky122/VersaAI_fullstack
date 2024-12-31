@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, CircularProgress, Grid, Card, CardMedia, Typography, Pagination } from '@mui/material';
+import { TextField, Button, CircularProgress, Grid, Card, CardMedia, Typography, Pagination, Tooltip } from '@mui/material';
 import { motion } from 'framer-motion';
 
 function ImageGenerator() {
@@ -47,16 +47,7 @@ function ImageGenerator() {
         onChange={(e) => setPrompt(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={generateImages}
-        sx={{
-          '&:hover': {
-            backgroundColor: '#007BFF', // A lighter blue for hover
-          },
-        }}
-      >
+      <Button variant="contained" color="primary" onClick={generateImages}>
         Generate
       </Button>
       {isLoading ? (
@@ -70,9 +61,11 @@ function ImageGenerator() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <Card>
-                  <CardMedia component="img" image={url} alt={`Generated ${index}`} />
-                </Card>
+                <Tooltip title={`Image ${index + 1}`} arrow>
+                  <Card>
+                    <CardMedia component="img" image={url} alt={`Generated ${index}`} />
+                  </Card>
+                </Tooltip>
               </motion.div>
             </Grid>
           ))}
