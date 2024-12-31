@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { TextField, Button, CircularProgress, Grid, Card, CardMedia, Typography } from '@mui/material';
+import { TextField, Button, CircularProgress, Grid, Card, CardMedia, Typography, Pagination } from '@mui/material';
 import { motion } from 'framer-motion';
 
 function ImageGenerator() {
   const [prompt, setPrompt] = useState('');
   const [imageUrls, setImageUrls] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const imagesPerPage = 6;
 
   const generateImages = async () => {
     setIsLoading(true);
@@ -19,6 +21,14 @@ function ImageGenerator() {
       setIsLoading(false);
     }
   };
+
+  const handleChangePage = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const indexOfLastImage = currentPage * imagesPerPage;
+  const indexOfFirstImage = indexOfLastImage - imagesPerPage;
+  const currentImages = imageUrls.slice(indexOfFirstImage, indexOfLastImage);
 
   return (
     <motion.div
@@ -44,7 +54,7 @@ function ImageGenerator() {
         <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
       ) : (
         <Grid container spacing={2} sx={{ marginTop: 2 }}>
-          {imageUrls.map((url, index) => (
+          {currentImages.map((url, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -59,6 +69,12 @@ function ImageGenerator() {
           ))}
         </Grid>
       )}
+      <Pagination
+        count={Math.ceil(imageUrls.length / imagesPerPage)}
+        page={currentPage}
+        onChange={handleChangePage}
+        sx={{ marginTop: 2, display: 'flex', justifyContent: 'center' }}
+      />
     </motion.div>
   );
 }
