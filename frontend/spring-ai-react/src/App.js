@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Tabs, Tab, Box, IconButton } from '@mui/material';
+// import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { ThemeContext } from './ThemeContext';
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
@@ -9,38 +10,45 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 function App() {
   const { toggleTheme, mode } = useContext(ThemeContext);
-  const [activeTab, setActiveTab] = React.useState(0); // Active tab state
+  const [activeTab, setActiveTab] = React.useState(0);
 
   const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue); // Change active tab
+    setActiveTab(newValue);
   };
 
   return (
     <Box sx={{ width: '100%', typography: 'body1', textAlign: 'center', padding: 2, position: 'relative' }}>
       {/* Theme Toggle Button */}
-      <IconButton onClick={toggleTheme} color="inherit" sx={{ position: 'absolute', top: 16, right: 16 }}>
-        {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
+      {/* <IconButton
+        onClick={toggleTheme}
+        sx={{ position: 'absolute', top: 16, right: 16 }}
+        color="inherit"
+      >
+        {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+      </IconButton> */}
 
-      {/* Tabs Navigation */}
       <Tabs 
         value={activeTab} 
         onChange={handleTabChange} 
         centered 
         textColor="primary" 
-        indicatorColor="primary" 
+        indicatorColor="primary"
         sx={{ marginBottom: 2 }}
       >
         <Tab label="Image Generator" />
         <Tab label="Ask AI" />
         <Tab label="Recipe Generator" />
       </Tabs>
+      <IconButton onClick={toggleTheme} color="inherit" 
+      sx={{ position: 'absolute', top: 16, right: 16 }}>
+          {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
 
-      {/* Tab Content */}
+
       <Box>
-        {activeTab === 0 && <ImageGenerator />} {/* Show Image Generator if the active tab is 0 */}
-        {activeTab === 1 && <ChatComponent />} {/* Show Chat if the active tab is 1 */}
-        {activeTab === 2 && <RecipeGenerator />} {/* Show Recipe Generator if the active tab is 2 */}
+        {activeTab === 0 && <ImageGenerator />}
+        {activeTab === 1 && <ChatComponent />}
+        {activeTab === 2 && <RecipeGenerator />}
       </Box>
     </Box>
   );
