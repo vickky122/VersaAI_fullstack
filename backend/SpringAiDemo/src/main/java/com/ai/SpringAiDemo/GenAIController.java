@@ -75,7 +75,7 @@ public class GenAIController {
     return recipeService.createRecipe(ingredients, cuisine, dietaryRestrictions);
   }
 
-  @GetMapping("/financial-advice")
+  @GetMapping("financial-advice")
   public String getFinancialAdvice(@RequestParam String query) {
     return financeService.getFinancialAdvice(query);
   }
