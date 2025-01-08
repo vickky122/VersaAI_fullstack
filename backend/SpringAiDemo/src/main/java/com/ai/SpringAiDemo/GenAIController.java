@@ -17,11 +17,14 @@ public class GenAIController {
   private final ChatService chatService;
   private final ImageService imageService;
   private final RecipeService recipeService;
+  private final FinanceService financeService;
 
-  public GenAIController(ChatService chatService, ImageService imageService, RecipeService recipeService) {
+  public GenAIController(ChatService chatService, ImageService imageService, RecipeService recipeService,
+      FinanceService financeService) {
     this.chatService = chatService;
     this.imageService = imageService;
     this.recipeService = recipeService;
+    this.financeService = financeService;
   }
 
   @GetMapping("/ask-ai")
@@ -70,6 +73,11 @@ public class GenAIController {
       @RequestParam(defaultValue = "") String dietaryRestrictions) {
 
     return recipeService.createRecipe(ingredients, cuisine, dietaryRestrictions);
+  }
+
+  @GetMapping("/financial-advice")
+  public String getFinancialAdvice(@RequestParam String query) {
+    return financeService.getFinancialAdvice(query);
   }
 
 }
