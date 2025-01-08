@@ -51,11 +51,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
     <groupId>com.itextpdf</groupId>
-    <artifactId>itext7-core</artifactId>
-    <version>7.2.5</version>
-</dependency>
+    <artifactId>itextpdf</artifactId>
+    <version>5.3.4</version>
+</dependency> -->
+
 
 		<dependency>
     <groupId>io.github.cdimascio</groupId>
@@ -85,14 +86,20 @@
 		</plugins>
 	</build>
 	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repository>
+        <id>spring-milestones</id>
+        <name>Spring Milestones</name>
+        <url>https://repo.spring.io/milestone</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <!-- <repository>
+        <id>itext</id>
+        <name>iText Repository</name>
+        <url>https://repo.itextsupport.com/releases/</url>
+    </repository> -->
+</repositories>
+
 
 </project>
