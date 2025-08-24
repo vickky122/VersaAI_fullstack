@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { Box, Typography, Button, Container, IconButton } from '@mui/material';
-import { ThemeContext } from './ThemeContext';
+import { Box, Container, Typography, Button, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
-import Particles from 'react-tsparticles'; // yarn add react-tsparticles
+import { ThemeContext } from './ThemeContext';
 
 import ImageGenerator from './components/ImageGenerator';
 import ChatComponent from './components/ChatComponent';
@@ -14,126 +13,76 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 function App() {
   const { mode, toggleTheme } = useContext(ThemeContext);
 
-  const Section = ({ children, id, bg }) => (
-    <Box
-      id={id}
-      sx={{
-        py: 10,
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: bg || 'transparent',
-      }}
-    >
-      <Container maxWidth="md">{children}</Container>
-    </Box>
+  const Section = ({ id, children }) => (
+    <section id={id} className="section">
+      <div className="section-inner">{children}</div>
+    </section>
   );
 
   return (
-    <Box
-      sx={{
-        bgcolor: mode === 'dark' ? '#0f0f0f' : '#fafafa',
-        color: 'text.primary',
-        overflowX: 'hidden',
-        position: 'relative',
-      }}
-    >
-      {/* Particle Background */}
-      <Particles
-        style={{ position: 'absolute', top: 0, left: 0 }}
-        height="100vh"
-        width="100vw"
-        options={{
-          background: { color: 'transparent' },
-          particles: {
-            number: { value: 50 },
-            size: { value: 3 },
-            move: { speed: 1 },
-            links: { enable: true, color: '#ffffff', opacity: 0.3 },
-          },
-        }}
-      />
-
-      {/* Hero Section */}
-      <Box
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 2,
-          background: `linear-gradient(135deg, ${
-            mode === 'dark' ? '#1f1c2c, #928dab' : '#d9a7c7, #fffcdc'
-          })`,
-        }}
-      >
-        {/* Animated floating blob */}
+    <Box sx={{ position: 'relative', minHeight: '100vh' }}>
+      {/* HERO */}
+      <header className="hero" id="home">
+        {/* animated gradient blobs */}
         <motion.div
+          className="blob blob-1"
           animate={{ y: [0, 20, 0] }}
-          transition={{ repeat: Infinity, duration: 6 }}
-          style={{
-            position: 'absolute',
-            width: 500,
-            height: 500,
-            borderRadius: '50%',
-            background: 'rgba(255,255,255,0.05)',
-            filter: 'blur(100px)',
-            top: '10%',
-            left: '30%',
-            zIndex: 1,
-          }}
+          transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut' }}
         />
+        <motion.div
+          className="blob blob-2"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut' }}
+        />
+        <Container sx={{ position: 'relative', zIndex: 2 }}>
+          <Typography component="h1" variant="h2">
+            Build with AI. Launch like a startup.
+          </Typography>
+          <Typography variant="h6" sx={{ opacity: 0.9, mb: 3 }}>
+            Images. Chat. Recipes. One modern interface.
+          </Typography>
+          <div className="hero-cta">
+            <Button href="#features" size="large" variant="contained" sx={{ borderRadius: '999px', px: 3 }}>
+              Explore Features
+            </Button>
+            <Button href="#images" size="large" variant="outlined" sx={{ borderRadius: '999px', px: 3 }}>
+              Try Now
+            </Button>
+          </div>
+        </Container>
+      </header>
 
-        <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2, zIndex: 2 }}>
-          🚀 VersaAI
-        </Typography>
-        <Typography variant="h5" sx={{ mb: 4, zIndex: 2 }}>
-          Your AI Companion for Images, Recipes & Conversations
-        </Typography>
-        <Button
-          variant="contained"
-          href="#features"
-          size="large"
-          sx={{ borderRadius: 3, px: 4, zIndex: 2 }}
-        >
-          Explore Features ↓
-        </Button>
-      </Box>
-
-      {/* Features Section */}
+      {/* FEATURES */}
       <Section id="features">
-        <Typography variant="h4" align="center" gutterBottom>
-          What can VersaAI do?
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', flexWrap: 'wrap' }}>
-          {[
-            { text: '🖼️ Image Generator', link: '#images' },
-            { text: '💬 Talk to AI', link: '#chat' },
-            { text: '🍳 Recipe Generator', link: '#recipes' },
-          ].map((item, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.08 }}>
-              <Button href={item.link} variant="outlined" sx={{ p: 4, borderRadius: 4 }}>
-                {item.text}
-              </Button>
-            </motion.div>
-          ))}
-        </Box>
+        <div className="features">
+          <a className="feature-card" href="#images">
+            <Typography variant="h5" sx={{ mb: 1 }}>🖼️ Image Generator</Typography>
+            <Typography variant="body2">Create striking visuals from prompts.</Typography>
+          </a>
+          <a className="feature-card" href="#chat">
+            <Typography variant="h5" sx={{ mb: 1 }}>💬 Ask AI</Typography>
+            <Typography variant="body2">Converse with contextual intelligence.</Typography>
+          </a>
+          <a className="feature-card" href="#recipes">
+            <Typography variant="h5" sx={{ mb: 1 }}>🍳 Recipe Creator</Typography>
+            <Typography variant="body2">Turn ingredients into delicious dishes.</Typography>
+          </a>
+        </div>
       </Section>
 
-      {/* Functional Sections */}
-      <Section id="images" bg={mode === 'dark' ? '#181818' : '#f9f9f9'}>
+      {/* SECTIONS */}
+      <Section id="images">
+        <Typography variant="h4" sx={{ fontWeight: 800, mb: 2 }}>Image Studio</Typography>
         <ImageGenerator />
       </Section>
 
-      <Section id="chat" bg={mode === 'dark' ? '#0f0f0f' : '#ffffff'}>
+      <Section id="chat">
+        <Typography variant="h4" sx={{ fontWeight: 800, mb: 2 }}>Conversational AI</Typography>
         <ChatComponent />
       </Section>
 
-      <Section id="recipes" bg={mode === 'dark' ? '#181818' : '#f9f9f9'}>
+      <Section id="recipes">
+        <Typography variant="h4" sx={{ fontWeight: 800, mb: 2 }}>Recipe Creator</Typography>
         <RecipeGenerator />
       </Section>
 
@@ -142,13 +91,13 @@ function App() {
         <Typography variant="body2">⚡ Built with Spring Boot + React + AI</Typography>
       </Box>
 
-      {/* Floating Theme Toggle */}
+      {/* Floating theme toggle */}
       <IconButton
         onClick={toggleTheme}
         sx={{
           position: 'fixed',
-          bottom: 16,
           right: 16,
+          bottom: 16,
           bgcolor: 'background.paper',
           boxShadow: 3,
         }}
