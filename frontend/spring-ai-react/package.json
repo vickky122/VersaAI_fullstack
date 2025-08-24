@@ -10,10 +10,12 @@
     "cra-template": "1.2.0",
     "framer-motion": "^11.15.0",
     "grid": "^4.10.8",
+    "mui": "^0.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
+    "react-tsparticles": "^2.12.2",
     "spring-ai-react": "file:",
     "web-vitals": "^4.2.4"
   },
