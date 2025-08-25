@@ -1,4 +1,4 @@
-package com.ai.SpringAiDemo;
+package com.ai.SpringAiDemo.service;
 
 import java.util.Map;
 
